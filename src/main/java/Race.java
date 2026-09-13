@@ -43,10 +43,12 @@ public class Race {
 
             for (Team team : teams) {
                 team.getCars().forEach(car -> {
-                    car.getTyre().driveLap();
+                    car.getTyre().driveLap(circuit.getCircuitType().getDegradationRate());  // circuitDegradatie implementeren bij banden
                 });
             }
+
             currentLap++;
+            // check einde race.
         }
     }
 

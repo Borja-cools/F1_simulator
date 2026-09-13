@@ -25,11 +25,12 @@ public class Tyre {
         return condition;
     }
 
+
     // Methodes tyre
     // aantal rondes
-    public void driveLap() {
+    public void driveLap(double circuitDeg) {
         amountOfLaps++;
-        this.condition -= tyreType.getDegradation();
+        this.condition -= tyreType.getDegradation() * circuitDeg; //tyre basisdegradatie × circuit degradation factor
     }
     // grip adv degradatie - latere uitwerking
 }
