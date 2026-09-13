@@ -46,19 +46,18 @@ public class Race {
                     car.getTyre().driveLap(circuit.getCircuitType().getDegradationRate());  // circuitDegradatie implementeren bij banden
                 });
             }
-
             currentLap++;
-            // check einde race.
+            // Einde race na lap checken
+            int maxLaps = circuit.getCircuitType().getNumberOfLaps();
+            if(currentLap == maxLaps){
+                endRace();
+            }
         }
     }
-
     // End - check of laatste ronde is gereden.
     public void endRace() {
         if (raceStatus == RaceState.RUNNING && currentLap ==  circuit.getCircuitType().getNumberOfLaps()) {
             raceStatus = RaceState.FINISHED;
         }
     }
-
-
-
 }
