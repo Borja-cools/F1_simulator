@@ -26,9 +26,8 @@ public class Tyre {
     }
 
     // Methodes tyre
-
     // aantal rondes
-    private void driveLap() {
+    public void driveLap() {
         amountOfLaps++;
         this.condition -= tyreType.getDegradation();
     }

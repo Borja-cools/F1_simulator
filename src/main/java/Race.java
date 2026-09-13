@@ -18,11 +18,12 @@ public class Race {
             throw new IllegalArgumentException("Er moet een circuit worden toegewezen aan de race.");
         }
         this.circuit = circuit;
-        if (teams.size() != 11){
+        if (teams == null || teams.size() != 11){
             throw new IllegalArgumentException("Niet alle teams nemen deel"); // dit is momenteel basis check, later kan eventueel een team niet meedoen.
         }
         this.teams = teams;
         this.currentLap = 0;
+        this.raceStatus = RaceState.NOT_STARTED;
     }
 
     // Methodes voor delegatie race
@@ -34,16 +35,27 @@ public class Race {
 
     // Lap - ronde bijwerken, status banden bijwerken
     public void drivenLap() {
-        if (raceStatus == RaceState.RUNNING && currentLap > circuit.getCircuitType().getNumberOfLaps()) {
+        if (raceStatus == RaceState.RUNNING && currentLap < circuit.getCircuitType().getNumberOfLaps()) {
             // conditie banden aanpassen - per driver die voorbij komt.
-            teams.
+            // voor elk team
+            // voor elke car van team
+            // car.getTyre, ronde toevoegen
 
-
+            for (Team team : teams) {
+                team.getCars().forEach(car -> {
+                    car.getTyre().driveLap();
+                });
+            }
             currentLap++;
         }
     }
 
     // End - check of laatste ronde is gereden.
+    public void endRace() {
+        if (raceStatus == RaceState.RUNNING && currentLap ==  circuit.getCircuitType().getNumberOfLaps()) {
+            raceStatus = RaceState.FINISHED;
+        }
+    }
 
 
 
