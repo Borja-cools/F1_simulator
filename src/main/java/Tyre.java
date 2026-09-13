@@ -24,13 +24,38 @@ public class Tyre {
     public double getCondition() {
         return condition;
     }
+    public double getGrip(){
+        return currentGrip();
+    }
+
 
     // Methodes tyre
-
     // aantal rondes
-    private void driveLap() {
+    public void driveLap(double circuitDeg) {
         amountOfLaps++;
-        this.condition -= tyreType.getDegradation();
+
+        // Condition berekenen
+        double newCondition = condition - tyreType.getDegradation() * circuitDeg;
+        // Condition mag niet onder 0 gaan
+        if (newCondition < 0) {
+            condition = 0;
+        } else {
+            condition = newCondition;
+        }
+
+    }
+
+    public boolean isWornOut(){
+        if(condition == 0){
+            return true;
+        }
+        return false;
     }
     // grip adv degradatie - latere uitwerking
+    private double currentGrip(){
+        double baseGrip = tyreType.getGrip();
+        double effectiveGrip = baseGrip * (condition / 100.0);
+
+        return effectiveGrip;
+    }
 }

@@ -25,4 +25,9 @@ public class Team {
         if (this.cars.size() >= 2) throw new IllegalArgumentException("Er kunnen maximaal 2 wagens in een renstal.");
         this.cars.add(car);
     }
+
+    // Getter voor de wagens
+    public List<Car> getCars() {
+        return this.cars;
+    }
 }
